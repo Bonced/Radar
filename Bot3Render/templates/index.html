@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerial Threat Tracking System</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚠️</text></svg>">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <span class="logo-icon">⚠</span>
+                <div class="logo-text">
+                    <div class="logo-title">AERIAL THREAT TRACKING</div>
+                    <div class="logo-subtitle">LIVE INTELLIGENCE FEED</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span class="status-text" id="statusText">INITIALIZING</span>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="stats-group">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalThreats">0</div>
+                    <div class="stat-label">TOTAL</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="activeThreats">0</div>
+                    <div class="stat-label">ACTIVE</div>
+                </div>
+            </div>
+            <a href="/admin/panel" class="admin-link" title="Панель управления">⚙️</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Left Panel - Map -->
+        <div class="map-container">
+            <div id="map"></div>
+            
+            <!-- Map Legend -->
+            <div class="legend">
+                <div class="legend-title">THREAT LEGEND</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-marker drone-marker">●</span>
+                        <span class="legend-label">DRONE / UAV</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker missile-marker">●</span>
+                        <span class="legend-label">MISSILE</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker aircraft-marker">●</span>
+                        <span class="legend-label">AIRCRAFT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Threat Feed -->
+        <div class="feed-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">THREAT FEED</h2>
+                <div class="update-time" id="lastUpdate">LAST UPDATE: --:--:--</div>
+            </div>
+            
+            <div class="threat-list" id="threatList">
+                <div class="loading-message">
+                    <div class="loading-spinner"></div>
+                    <div>Loading threat data...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS - MUST load before map.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JS - loads after Leaflet -->
+    <script src="/static/map.js" defer></script>
+</body>
+</html>
